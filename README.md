@@ -1,7 +1,8 @@
 # QCDS
 Quantum Circuit Design Search
 
-This repository contains some part of the implementations for the paper, "Quantum Circuit Design Search."
+This repository contains the implementations of the reinforcement learning search strategy discussed in the paper, "Quantum Circuit Design Search." 
+The archive version of the paper can be found at this [link](https://arxiv.org/pdf/2012.04046.pdf). This study explores search strategies for the design of the parameterized quantum circuits.
 
 ```
 requirements:
@@ -20,5 +21,4 @@ python main.py
 
 
 
-The archive version of the paper can be found at this [link](https://arxiv.org/pdf/2012.04046.pdf). This study explores search strategies for the design of the parameterized quantum circuits.
 
