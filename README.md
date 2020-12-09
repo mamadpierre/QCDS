@@ -12,13 +12,24 @@ Pytorch >= 1.4
 
 ```
 
-To run the code with your use
+To run the code with use
 
 ```
 python main.py
 
 ```
 
+Please cite our paper, if you use the code. 
+
+```
+@article{pirhooshyaran2020quantum,
+	title={Quantum circuit design search},
+	author={Pirhooshyaran, Mohammad and Terlaky, Tamas},
+	journal={arXiv preprint arXiv:2012.04046},
+	year={2020}
+}
+
+```
 
 
 
