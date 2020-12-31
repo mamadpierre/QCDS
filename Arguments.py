@@ -19,7 +19,7 @@ def get_args():
         '--quantumController', default=False, action='store_true', help='quantum controller')
 
     parser.add_argument(
-        '--QuantumPATH', default='Results/TorchSaves', help='QuantumPATH')
+        '--QuantumPATH', default='TorchSaves', help='QuantumPATH')
 
     parser.add_argument(
         '--batch_size', type=int, default=64, help='quantum Train batch size')
