@@ -2,10 +2,8 @@ import pennylane as qml
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from types import SimpleNamespace
-
-args= SimpleNamespace(device='cpu', n_output=3, n_qubits=4, q_depth=6, small_design = False)
-
+from Arguments import get_args
+args = get_args()
 
 dev = qml.device("default.qubit", wires=args.n_qubits)
 @qml.qnode(dev, interface="torch")
@@ -50,7 +48,7 @@ def quantum_net(q_input_features, q_weights_flat, **kwargs):
             if layer_node2 == 'Tof':
                 qml.Toffoli(wires=[node, (node + 1) % args.n_qubits, (node + 2) % args.n_qubits])
             if layer_node2 == 'CZ':
-                qml.CZ(wires=[node, (node + 1) % args.n_qubits])                
+                qml.CZ(wires=[node, (node + 1) % args.n_qubits])
     exp_vals = [qml.expval(qml.PauliZ(position)) for position in range(args.n_output)]
     return tuple(exp_vals)
 
