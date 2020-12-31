@@ -16,7 +16,10 @@ def get_args():
         '--small_design', default=False, action='store_true', help='one layer design')
 
     parser.add_argument(
-        '--QuantumPATH', default='TorchSaves', help='QuantumPATH')
+        '--quantumController', default=False, action='store_true', help='quantum controller')
+
+    parser.add_argument(
+        '--QuantumPATH', default='Results/TorchSaves', help='QuantumPATH')
 
     parser.add_argument(
         '--batch_size', type=int, default=64, help='quantum Train batch size')
