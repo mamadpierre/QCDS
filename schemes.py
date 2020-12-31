@@ -68,8 +68,6 @@ def Scheme(controller, train_loader, val_loader, test_loader, controller_optimiz
     for epoch in range(1, args.Cepochs + 1):
         controller.eval()
         design, log_prob, entropy = controller()
-        print("design: ", design)
-
         q_model = QNet(args).to(args.device)
         optimizer = optim.Adam(q_model.QuantumLayer.parameters(), lr=args.lr)
         for q_epoch in range(1, args.Qepochs + 1):
