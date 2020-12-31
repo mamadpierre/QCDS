@@ -1,5 +1,5 @@
 from __future__ import print_function
-from ControllerNetwrok import Controller, ControllerSmall
+from ControllerNetwrok import Controller, ControllerSmall, QControllerSmall
 from datasets import IRISDataLoaders
 from plot import loss_plotting
 from schemes import *
@@ -13,7 +13,10 @@ def main(args):
     print("args:", args)
     train_loader, val_loader, test_loader = IRISDataLoaders(args)
     if args.small_design:
-        ControllerModel = ControllerSmall(args).to(args.device)
+        if args.quantumController:
+            ControllerModel = QControllerSmall(args).to(args.device)
+        else:
+            ControllerModel = ControllerSmall(args).to(args.device)
     else:
         ControllerModel = Controller(args).to(args.device)
     controller_optimizer = torch.optim.Adam(ControllerModel.parameters(), lr=args.Clr, eps=1e-3)
