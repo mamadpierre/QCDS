@@ -9,12 +9,13 @@ import pennylane as qml
 
 
 
+
 class Controller(torch.nn.Module):
     def __init__(self, args):
         torch.nn.Module.__init__(self)
         self.args = args
         self.rotations = ['x', 'y', 'z']
-        self.operations = ['H', 'Px', 'Py', 'Pz', 'CNot', 'CSwap', 'Tof']
+        self.operations = ['H', 'Px', 'Py', 'Pz', 'CNot', 'CSwap', 'Tof', 'CZ']
         self.shared_fc1 = nn.Linear(1, 48)
         self.shared_fc2 = nn.Linear(48, 12)
         self.dropout1 = nn.Dropout(0.25)
@@ -88,8 +89,10 @@ class Controller(torch.nn.Module):
                     updated_design[layer + node + '2'] = 'CNot'
                 elif design[l, n, 2] == 5:
                     updated_design[layer + node + '2'] = 'CSwap'
-                else:
+                elif design[l, n, 2] == 6:
                     updated_design[layer + node + '2'] = 'Tof'
+                else:
+                    updated_design[layer + node + '2'] = 'CZ'
 
         return updated_design
 
@@ -100,7 +103,7 @@ class ControllerSmall(torch.nn.Module):
         torch.nn.Module.__init__(self)
         self.args = args
         self.rotations = ['x', 'y', 'z']
-        self.operations = ['H', 'Px', 'Py', 'Pz', 'CNot', 'CSwap', 'Tof']
+        self.operations = ['H', 'Px', 'Py', 'Pz', 'CNot', 'CSwap', 'Tof', 'CZ']
         self.shared_fc1 = nn.Linear(1, 48)
         self.shared_fc2 = nn.Linear(48, 12)
         self.dropout1 = nn.Dropout(0.25)
@@ -129,6 +132,7 @@ class ControllerSmall(torch.nn.Module):
             for decision in range(3):
                 logits = self.fcAction[str(node % 4) + str(decision)](x)
                 probs = F.softmax(logits, dim=1)
+                # print(node, decision, "probs: ", probs)
                 m = tdist.Categorical(probs)
                 action = m.sample()
                 instant_log_prob = m.log_prob(action)
@@ -136,6 +140,7 @@ class ControllerSmall(torch.nn.Module):
                 design[node, decision] = action
                 log_prob_list.append(instant_log_prob)
                 entropy_list.append(instant_entropy)
+        # print("-"*80)
         design = torch.tensor(design)
         log_prob = torch.sum(torch.stack(log_prob_list))
         entropy = torch.sum(torch.stack(entropy_list))
@@ -170,12 +175,14 @@ class ControllerSmall(torch.nn.Module):
                 updated_design[node + '2'] = 'CNot'
             elif design[n, 2] == 5:
                 updated_design[node + '2'] = 'CSwap'
-            else:
+            elif design[n, 2] == 6:
                 updated_design[node + '2'] = 'Tof'
-
+            else:
+                updated_design[node + '2'] = 'CZ'
         return updated_design
 
-
+    
+    
 
 
 class QuantumLayerController(nn.Module):
