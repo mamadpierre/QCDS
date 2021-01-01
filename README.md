@@ -12,7 +12,7 @@ Pytorch >= 1.4
 
 ```
 
-To run the code with defualt option use
+To run the code with defualt arguments use
 
 ```
 python main.py
