@@ -22,9 +22,6 @@ def quantum_net(q_input_features, q_weights_flat, **kwargs):
                 layer_node0 = current_design[str(layer % 6) + str(node % 4) + '0']
                 layer_node1 = current_design[str(layer % 6) + str(node % 4) + '1']
                 layer_node2 = current_design[str(layer % 6) + str(node % 4) + '2']
-
-
-
             if layer_node0:
                 qml.RY(q_input_features[node], wires=node)
             if layer_node1 == 'x':
