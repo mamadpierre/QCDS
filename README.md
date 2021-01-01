@@ -19,7 +19,7 @@ python main.py
 
 ```
 
-The above code executes a classical controller (neural network) to find the whole design of the PQC. If you wish the controller to find only a repetitive layer of the PQC add the argument ``` --small_design```. In addition, there can be an option of having hybrid quantum-classical controller to find a layer of PQC, to do so, use 
+The above code executes a classical controller (neural network) to find the whole design of the PQC. If you wish the controller to find only a repetitive layer of the PQC add the argument ``` --small_design```. In addition, there can be an option of having hybrid quantum-classical controller to find a layer of PQC. For this use 
 
 ```
 python main.py --small_design --quantumController
