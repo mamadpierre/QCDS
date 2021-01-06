@@ -91,16 +91,16 @@ def Scheme(controller, train_loader, val_loader, test_loader, controller_optimiz
             best_val_loss = epoch_val_loss
             best_val_epoch = epoch
             best_design = design
-            torch.save({
-                'epoch': epoch, 'q_model_state_dict': q_model.QuantumLayer.state_dict(),
-                'optimizer_state_dict': optimizer.state_dict(),
-                'controller_optimizer_state_dict': controller_optimizer.state_dict(),
-                'controller_state_dict': controller.state_dict(),
-                "test_loss_list": test_loss_list, "val_loss_list": val_loss_list, "train_loss_list": train_loss_list,
-                "best_val_epoch": best_val_epoch, "best_val_loss": best_val_loss,
-                "best_train_epoch": best_train_epoch, "best_train_loss": best_train_loss,
-                "best_test_epoch": best_test_epoch, "best_test_loss": best_test_loss,
-                "best_design": best_design}, args.QuantumPATH)
+        torch.save({
+            'epoch': epoch, 'q_model_state_dict': q_model.QuantumLayer.state_dict(),
+            'optimizer_state_dict': optimizer.state_dict(),
+            'controller_optimizer_state_dict': controller_optimizer.state_dict(),
+            'controller_state_dict': controller.state_dict(),
+            "test_loss_list": test_loss_list, "val_loss_list": val_loss_list, "train_loss_list": train_loss_list,
+            "best_val_epoch": best_val_epoch, "best_val_loss": best_val_loss,
+            "best_train_epoch": best_train_epoch, "best_train_loss": best_train_loss,
+            "best_test_epoch": best_test_epoch, "best_test_loss": best_test_loss,
+            "best_design": best_design}, args.QuantumPATH)
     return {"test_loss_list": test_loss_list, "val_loss_list": val_loss_list, "train_loss_list": train_loss_list,
             "best_val_epoch": best_val_epoch, "best_val_loss": best_val_loss,
             "best_train_epoch": best_train_epoch, "best_train_loss": best_train_loss,
