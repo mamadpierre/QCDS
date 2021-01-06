@@ -25,8 +25,21 @@ The above code executes a classical controller (neural network) to find the whol
 python main.py --small_design --quantumController
 
 ```
+If you wish to see the performance of a fixed design which can be one of the suggested designs of this study, ``` runner.py``` is useful. There are 6 selected designs used on Glass dataset in the paper plus the two benchmark designs (Ry-CNOT & Ry-CZ) and the two benchmark designs modified with ReUploading strategy. If you run 
 
-Please cite our paper, if you use the code. 
+```
+python runner.py --n_qubits=9 --n_output=6
+
+```
+it perfors the benchmark (Ry-CNOT) design on the Glass Dataset and uses saved weights. For all 6 selected designs and benchmark (Ry-CNOT) the saved weights are in the directory called, "quantumWeights" and are called by default. To change the design you can add ```--design_identifier``` with possible values such as ```CZ, CZRU, CNOTRU, selected0, ..., selected5 ```. To start the learning process without saving wieghts for the 6 selected designs or (Ry-CNOT) you must add ```--from_scratch ``` argument. Please note that the selected design discovered by RL is ```selected0```.
+
+For instance
+
+```
+python runner.py --n_qubits=9 --n_output=6 --design_identifier="selected0" --from_scratch
+
+```
+runs the RL discovered design from scratch on the glass dataset. Please cite our paper, if you use the code. 
 
 ```
 @article{pirhooshyaran2020quantum,
