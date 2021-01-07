@@ -39,7 +39,7 @@ For instance
 python runner.py --n_qubits=9 --n_output=6 --design_identifier="selected0" --from_scratch
 
 ```
-runs the RL discovered design from scratch on the glass dataset. Using the saved weights for design ```selected1``` should provide test accuracy of more than 64% on the Glass dataset within few first epochs. Please cite our paper, if you use the code. 
+runs the RL discovered design from scratch on the glass dataset. Using the saved weights for the design ```selected1``` should provide test accuracy of around 64% on the Glass dataset within few first epochs while considering the benchmark (Ry-CNOT) design (by not setting any ```design_identifier```) and using save weights should provide test accuracy of around 55% on the Glass dataset within few first epochs. Please cite our paper, if you use the code. 
 
 ```
 @article{pirhooshyaran2020quantum,
