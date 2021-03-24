@@ -7,8 +7,8 @@ The archive version of the paper can be found at this [link](https://arxiv.org/p
 ```
 requirements:
 
-PennyLane >= 0.10
 Pytorch >= 1.4
+PennyLane >= 0.10
 
 ```
 
